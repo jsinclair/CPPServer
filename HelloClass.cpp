@@ -1,6 +1,8 @@
 #include "HelloClass.h"
 
-#include <stdio.h>
+#include <iostream>
+
+using namespace std;
 
 HelloClass::HelloClass(int target)
 {
@@ -12,8 +14,14 @@ HelloClass::~HelloClass()
 }
 
 void HelloClass::countToTarget() {
-    printf("Counting to %d\n", target);
+    cout << "Counting to " << target << "\n";
+    //printf("Counting to %d\n", target);
     for (int i = 1; i <= target; i++) {
-        printf("%d\n", i);
+        if (i > 1) {
+            cout << ", ";
+        }
+        cout << i;
+        //printf("%d\n", i);
     }
+    cout << "\n";
 }
