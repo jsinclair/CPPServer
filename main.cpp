@@ -8,6 +8,7 @@
 #include "HelloClass.h"
 
 using namespace std;
+using namespace cgicc;
 
 int main(int argc, char **argv)
 {
