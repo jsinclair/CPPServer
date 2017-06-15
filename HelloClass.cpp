@@ -14,7 +14,7 @@ HelloClass::~HelloClass()
 }
 
 void HelloClass::countToTarget() {
-    cout << "Counting to " << target << "\n";
+    cout << "Counting to " << target << "<br/>\n";
     //printf("Counting to %d\n", target);
     for (int i = 1; i <= target; i++) {
         if (i > 1) {

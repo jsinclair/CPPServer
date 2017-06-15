@@ -1,10 +1,18 @@
 #include <iostream>
-using namespace std;
+
+#include <cgicc/CgiDefs.h> 
+#include <cgicc/Cgicc.h> 
+#include <cgicc/HTTPHTMLHeader.h> 
+#include <cgicc/HTMLClasses.h>  
 
 #include "HelloClass.h"
 
+using namespace std;
+
 int main(int argc, char **argv)
 {
+    Cgicc formData;
+    
 	/*printf("hello world\n");
     
     HelloClass *testHello = new HelloClass(5);
@@ -28,6 +36,15 @@ int main(int argc, char **argv)
     dynam.countToTarget();
     
     cout << "</p>";
+    
+    form_iterator fi = formData.getElement("valuation");  
+	
+    if( !fi->isEmpty() && fi != (*formData).end()) {  
+        cout << "Valuation ID: " << **fi << endl;  
+    }else{
+        cout << "No text entered for valuation" << endl;  
+    }
+    
     cout << "</body>\n";
     cout << "</html>\n";
     
