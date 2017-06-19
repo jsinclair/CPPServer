@@ -32,19 +32,20 @@ int main(int argc, char **argv)
         ifstream file("content/img.jpg");
         
         if(file.is_open()) {
-            cout << "Content-Type:image/jpeg\r\n\r\n";
+            cout << "Content-Type:image/jpeg\n";
             cout << "Content-Type:application/force-download\n";
-            //cout << "Content-Type:application/octet-stream\n";
+            cout << "Content-Type:application/octet-stream\n";
             cout << "Content-Description: File Transfer\n";
-            cout << "Content-Disposition: attachment; filename=img.jpg\n";
+            cout << "Content-Disposition: attachment; filename=\"img.jpg\"\n";
             
             size_t size = 0;
             file.seekg(0, ios::end); // set the pointer to the end
             size = file.tellg() ; // get the length of the file
-            cout << "Content-Length: " << size << "\n";
+            cout << "Content-Length: " << size << "\r\n\r\n";
             file.seekg(0, ios::beg); // set the pointer to the beginning
             
             cout << file.rdbuf();
+            cout << "\r";
             file.close();
         } else {
             cout << "Content-type:text/html\r\n\r\n";
