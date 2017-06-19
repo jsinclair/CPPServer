@@ -32,8 +32,8 @@ int main(int argc, char **argv)
         ifstream file("content/img.jpg");
         
         if(file.is_open()) {
-            cout << "Content-Type:image/jpeg\r\n\r\n";
-//            cout << "Content-Type:application/download\n";
+            //cout << "Content-Type:image/jpeg\r\n\r\n";
+            cout << "Content-Type:application/download\n";
             cout << "Content-Description: File Transfer\n";
             cout << "Content-Disposition: attachment; filename=\"img.jpg\"\n";
             
