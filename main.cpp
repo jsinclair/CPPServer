@@ -34,29 +34,13 @@ int main(int argc, char **argv)
         cout << "Content-Description: File Transfer\n";
         cout << "Content-Disposition: attachment; filename=\"img.jpg\"\n";
         
-        ifstream inFile;
-        size_t size = 0; // here
-
-        inFile.open( "/content/img.jpg", ios::in|ios::binary|ios::ate );
-        char* oData = 0;
-        
-        inFile.seekg(0, ios::end); // set the pointer to the end
-        size = inFile.tellg() ; // get the length of the file
-        cout << "Content-Length: " << size << "\n";
-        
-        inFile.seekg(0, ios::beg);
-        
-        oData = new char[ size+1 ]; //  for the '\0'
-        inFile.read( oData, size );
-        oData[size] = '\0' ; // set '\0' 
-        
-        for ( size_t i = 0; i < strlen(oData); i++ )
-        {
-            /*cout << "oData["<<i<<"] " << oData[i];
-            cout << "\n";
-            cout << oData[i] << " + 'a' = " << ( oData[i] + 'a' );
-            cout << "\n\n";*/
-            cout << oData[i];
+        string line;
+        ifstream file("content/img.jpg");
+        if(file.is_open()) {
+            while(getline(file, line)) {
+                cout << line << "\n";
+            }
+            file.close();
         }
         
         //cout << "Valuation ID: " << **fi << endl;  
