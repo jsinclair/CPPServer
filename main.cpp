@@ -44,9 +44,7 @@ int main(int argc, char **argv)
         file.seekg(0, ios::beg); // set the pointer to the beginning
         
         if(file.is_open()) {
-            while(getline(file, line)) {
-                cout << line << "\n";
-            }
+            cout << file.rdbuf();
             file.close();
         }
         
@@ -67,10 +65,10 @@ int main(int argc, char **argv)
         cout << "</p>";
         
         cout << "No text entered for valuation" << endl;
+        
+        cout << "</body>\n";
+        cout << "</html>\n";
     }
-    
-    cout << "</body>\n";
-    cout << "</html>\n";
     
 	return 0;
 }
