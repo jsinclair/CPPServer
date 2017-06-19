@@ -36,7 +36,7 @@ int main(int argc, char **argv)
             cout << "Content-Type:application/force-download\n";
             //cout << "Content-Type:application/octet-stream\n";
             cout << "Content-Description: File Transfer\n";
-            cout << "Content-Disposition: attachment; filename=\"img.jpg\"\n";
+            cout << "Content-Disposition: attachment; filename=img.jpg\n";
             
             size_t size = 0;
             file.seekg(0, ios::end); // set the pointer to the end
