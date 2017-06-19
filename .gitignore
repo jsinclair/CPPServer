@@ -36,3 +36,6 @@ CPPServer.txt
 # CGI Stuff
 *.cgi
 
+# Mac Stuff
+.DS_Store
+
