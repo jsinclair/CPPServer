@@ -36,6 +36,13 @@ int main(int argc, char **argv)
         
         string line;
         ifstream file("content/img.jpg");
+        
+        size_t size = 0;
+        file.seekg(0, ios::end); // set the pointer to the end
+        size = file.tellg() ; // get the length of the file
+        cout << "Content-Length: " << size << "\n";
+        file.seekg(0, ios::beg); // set the pointer to the beginning
+        
         if(file.is_open()) {
             while(getline(file, line)) {
                 cout << line << "\n";
