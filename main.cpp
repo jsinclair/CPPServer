@@ -29,14 +29,14 @@ int main(int argc, char **argv)
     form_iterator fi = formData.getElement("valuation");  
 	
     if( !fi->isEmpty() && fi != (*formData).end()) {
-        ifstream file("content/img.jpg");
+        ifstream file("content/Valuation.pdf");
         
         if(file.is_open()) {
-            cout << "Content-Type:image/jpeg\n";
+            cout << "Content-Type:application/pdf\n";
             cout << "Content-Type:application/force-download\n";
-            cout << "Content-Type:application/octet-stream\n";
+            //cout << "Content-Type:application/octet-stream\n";
             cout << "Content-Description: File Transfer\n";
-            cout << "Content-Disposition: attachment; filename=\"img.jpg\"\n";
+            cout << "Content-Disposition: attachment; filename=\"Valuation.pdf\"\n";
             
             size_t size = 0;
             file.seekg(0, ios::end); // set the pointer to the end
