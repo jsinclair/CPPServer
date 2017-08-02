@@ -100,7 +100,7 @@ int main(int argc, char **argv)
         cout << "</head>\n";
         cout << "<body>\n";
         cout << "<h2>Stuff.</h2>\n";
-        cout << "Valuation ID: " << **fi << "\n";
+        cout << "Valuation ID: " << **fi << "<br/>";
         try {
             sql::Driver *driver;
             sql::Connection *con;
@@ -115,10 +115,10 @@ int main(int argc, char **argv)
             
             stmt = con->createStatement();
             res = stmt->executeQuery("select id, FirstNames, Surname from homeowner");
-            cout << "\t... MySQL replies: \n";
+            cout << "\t... MySQL replies: <br/>";
             while (res->next()) {
                 /* Access column data by alias or column name */
-                cout << res->getString("id") << ": " << res->getString("FirstNames") << " " << res->getString("Surname") << "\n";
+                cout << res->getString("id") << ": " << res->getString("FirstNames") << " " << res->getString("Surname") << "<br/>";
                 
                 /* Access column data by numeric offset, 1 is the first column */
                 //cout << res->getString(1) << endl;
