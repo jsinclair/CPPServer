@@ -17,6 +17,11 @@
 
 #include "HelloClass.h"
 
+/** 
+ * Build command:
+ * g++ -Wall -I/usr/include/cppconn -o hello.cgi main.cpp HelloClass.cpp -lcgicc -L/usr/lib -lmysqlcppconn
+ */
+
 using namespace std;
 using namespace cgicc;
 
@@ -95,7 +100,7 @@ int main(int argc, char **argv)
         cout << "</head>\n";
         cout << "<body>\n";
         cout << "<h2>Stuff.</h2>\n";
-        cout << "Valuation ID: " << **fi << endl;
+        cout << "Valuation ID: " << **fi << "\n";
         try {
             sql::Driver *driver;
             sql::Connection *con;
@@ -110,10 +115,10 @@ int main(int argc, char **argv)
             
             stmt = con->createStatement();
             res = stmt->executeQuery("select id, FirstNames, Surname from homeowner");
-            cout << "\t... MySQL replies: " << endl;
+            cout << "\t... MySQL replies: \n";
             while (res->next()) {
                 /* Access column data by alias or column name */
-                cout << res->getString("id") << ": " << res->getString("FirstNames") << " " << res->getString("Surname") << endl;
+                cout << res->getString("id") << ": " << res->getString("FirstNames") << " " << res->getString("Surname") << "\n";
                 
                 /* Access column data by numeric offset, 1 is the first column */
                 //cout << res->getString(1) << endl;
@@ -125,10 +130,10 @@ int main(int argc, char **argv)
         } catch (sql::SQLException &e) {
             cout << "# ERR: SQLException in " << __FILE__;
             cout << "(" << __FUNCTION__ << ") on line ";
-            cout << __LINE__ << endl;
+            cout << __LINE__ << "\n";
             cout << "# ERR: " << e.what();
             cout << " (MySQL error code: " << e.getErrorCode();
-            cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+            cout << ", SQLState: " << e.getSQLState() << " )\n";
         }
         
         cout << "</body>\n";
