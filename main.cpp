@@ -89,9 +89,26 @@ int main(int argc, char **argv)
         cout << "</head>\n";
         cout << "<body>\n";
         cout << "<h2>Stuff.</h2>\n";
-        cout << "<p>";
         cout << "Valuation ID: " << **fi << endl;
+        cout << "</body>\n";
+        cout << "</html>\n";
+    } else {
+        cout << "Content-type:text/html\r\n\r\n";
+        cout << "<html>\n";
+        cout << "<head>\n";
+        cout << "<title>Hello CGI</title>\n";
+        cout << "</head>\n";
+        cout << "<body>\n";
+        cout << "<h2>Hello World!</h2>\n";
+        cout << "<p>";
+        
+        HelloClass dynam(10);
+        dynam.countToTarget();
+        
         cout << "</p>";
+        
+        cout << "No text entered for valuation" << endl;
+        
         cout << "</body>\n";
         cout << "</html>\n";
     }
