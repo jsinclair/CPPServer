@@ -8,6 +8,13 @@
 #include <cgicc/HTTPHTMLHeader.h> 
 #include <cgicc/HTMLClasses.h>  
 
+// MySQL stuff
+#include "mysql_connection.h"
+#include <cppconn/driver.h>
+#include <cppconn/exception.h>
+#include <cppconn/resultset.h>
+#include <cppconn/statement.h>
+
 #include "HelloClass.h"
 
 using namespace std;
@@ -81,7 +88,6 @@ int main(int argc, char **argv)
     }*/
     
     if( !fi->isEmpty() && fi != (*formData).end()) {
-        
         cout << "Content-type:text/html\r\n\r\n";
         cout << "<html>\n";
         cout << "<head>\n";
@@ -90,6 +96,41 @@ int main(int argc, char **argv)
         cout << "<body>\n";
         cout << "<h2>Stuff.</h2>\n";
         cout << "Valuation ID: " << **fi << endl;
+        try {
+            sql::Driver *driver;
+            sql::Connection *con;
+            sql::Statement *stmt;
+            sql::ResultSet *res;
+
+            /* Create a connection */
+            driver = get_driver_instance();
+            con = driver->connect("tcp://127.0.0.1:3306", "root", "root");
+            /* Connect to the MySQL test database */
+            con->setSchema("house_val_db");
+            
+            stmt = con->createStatement();
+            res = stmt->executeQuery("select id, FirstNames, Surname from homeowner");
+            cout << "\t... MySQL replies: " << endl;
+            while (res->next()) {
+                /* Access column data by alias or column name */
+                cout << res->getString("id") << ": " << res->getString("FirstNames") << " " << res->getString("Surname") << endl;
+                
+                /* Access column data by numeric offset, 1 is the first column */
+                //cout << res->getString(1) << endl;
+            }
+            delete res;
+            delete stmt;
+            delete con;
+        
+        } catch (sql::SQLException &e) {
+            cout << "# ERR: SQLException in " << __FILE__;
+            cout << "(" << __FUNCTION__ << ") on line ";
+            cout << __LINE__ << endl;
+            cout << "# ERR: " << e.what();
+            cout << " (MySQL error code: " << e.getErrorCode();
+            cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+        }
+        
         cout << "</body>\n";
         cout << "</html>\n";
     } else {
