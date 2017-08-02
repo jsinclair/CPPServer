@@ -28,7 +28,7 @@ int main(int argc, char **argv)
     
     form_iterator fi = formData.getElement("valuation");  
 	
-    if( !fi->isEmpty() && fi != (*formData).end()) {
+    /*if( !fi->isEmpty() && fi != (*formData).end()) {
         ifstream file("content/Valuation.pdf");
         
         if(file.is_open()) {
@@ -76,6 +76,22 @@ int main(int argc, char **argv)
         
         cout << "No text entered for valuation" << endl;
         
+        cout << "</body>\n";
+        cout << "</html>\n";
+    }*/
+    
+    if( !fi->isEmpty() && fi != (*formData).end()) {
+        
+        cout << "Content-type:text/html\r\n\r\n";
+        cout << "<html>\n";
+        cout << "<head>\n";
+        cout << "<title>Hello CGI</title>\n";
+        cout << "</head>\n";
+        cout << "<body>\n";
+        cout << "<h2>Stuff.</h2>\n";
+        cout << "<p>";
+        cout << "Valuation ID: " << **fi << endl;
+        cout << "</p>";
         cout << "</body>\n";
         cout << "</html>\n";
     }
