@@ -3,17 +3,21 @@
 #include <cstring> // for std::strlen
 #include <cstddef> // for std::size_t -> is a typedef on an unsinged int
 
+// CGI includes
 #include <cgicc/CgiDefs.h> 
 #include <cgicc/Cgicc.h> 
 #include <cgicc/HTTPHTMLHeader.h> 
 #include <cgicc/HTMLClasses.h>  
 
-// MySQL stuff
+// MySQL includes
 #include "mysql_connection.h"
 #include <cppconn/driver.h>
 #include <cppconn/exception.h>
 #include <cppconn/resultset.h>
 #include <cppconn/statement.h>
+
+// JagPDF include
+#include <jagpdf/api.h>
 
 #include "HelloClass.h"
 
@@ -24,9 +28,18 @@
 
 using namespace std;
 using namespace cgicc;
+using namespace jag;
 
 int main(int argc, char **argv)
 {
+    pdf::Document doc(pdf::create_file("hello.pdf"));
+    doc.page_start(597.6, 848.68);
+    doc.page().canvas().text(50, 800, "Hello, world!");
+    doc.page_end();
+    doc.finalize();
+//    return 0;
+
+    
     Cgicc formData;
     
 	/*printf("hello world\n");
