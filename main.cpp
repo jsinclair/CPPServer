@@ -35,7 +35,7 @@ int main(int argc, char **argv)
     pdf::Document doc(pdf::create_file("./public/hello.pdf"));
     pdf::Image img = doc.image_load_file("/opt/homevaluation/nodejs/public/valuation/res/Pools/80000.jpg");
     doc.page_start(597.6, 848.68);
-    doc.page().canvas().text(50, 200, "Hello, world!");
+    doc.page().canvas().text(50, 800, "Hello, world!");
     doc.page().canvas().image(img, 20, 200);
     doc.page_end();
     doc.finalize();
