@@ -32,7 +32,7 @@ using namespace jag;
 
 int main(int argc, char **argv)
 {
-    pdf::Document doc(pdf::create_file("hello.pdf"));
+    pdf::Document doc(pdf::create_file("./public/hello.pdf"));
     doc.page_start(597.6, 848.68);
     doc.page().canvas().text(50, 800, "Hello, world!");
     doc.page_end();
