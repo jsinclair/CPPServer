@@ -23,7 +23,7 @@
 
 /** 
  * Build command:
- * g++ -Wall -I/usr/include/cppconn -o hello.cgi main.cpp HelloClass.cpp -lcgicc -L/usr/lib -lmysqlcppconn
+ * g++ -Wall -I/usr/include/cppconn -I/usr/include/jagpdf -o hello.cgi main.cpp HelloClass.cpp -lcgicc -L/usr/lib -lmysqlcppconn -ljagpdf
  */
 
 using namespace std;
