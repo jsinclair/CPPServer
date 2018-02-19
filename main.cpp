@@ -35,9 +35,10 @@ class MyStream
 {
     pdf::Int write(void const* data, pdf::ULong size) { 
         // write data
-        cout << "Content-Length: " << size << "\r\n\r\n";
+        cout << "length: " << size << "\n";
+//        cout << "Content-Length: " << size << "\r\n\r\n";
         cout << data;
-        cout << "\r";
+        cout << "\n";
         return 0;
     }
 
@@ -60,12 +61,11 @@ int main(int argc, char **argv)
     
     Cgicc formData;
     
-    cout << "Content-Type:application/pdf\n";
+    /*cout << "Content-Type:application/pdf\n";
     cout << "Content-Type:application/force-download\n";
-    //cout << "Content-Type:application/octet-stream\n";
     cout << "Content-Description: File Transfer\n";
     cout << "Content-Disposition: attachment; filename=\"Valuation.pdf\"\n";
-    
+    */
     MyStream stream;
     pdf::Document doc(pdf::create_stream(&stream));
     doc.page_start(597.6, 848.68);
