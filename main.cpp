@@ -66,12 +66,22 @@ int main(int argc, char **argv)
     cout << "Content-Description: File Transfer\n";
     cout << "Content-Disposition: attachment; filename=\"Valuation.pdf\"\n";
     */
+    
+    cout << "Content-type:text/html\r\n\r\n";
+    cout << "<html>\n";
+    cout << "<head>\n";
+    cout << "<title>Hello CGI</title>\n";
+    cout << "</head>\n";
+    cout << "<body>\n";
     MyStream stream;
     pdf::Document doc(pdf::create_stream(&stream));
     doc.page_start(597.6, 848.68);
     doc.page().canvas().text(50, 800, "Hello, world!");
     doc.page_end();
     doc.finalize();
+    
+    cout << "</body>\n";
+    cout << "</html>\n";
     
 	/*printf("hello world\n");
     
