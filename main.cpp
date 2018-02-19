@@ -36,7 +36,7 @@ class MyStream
     pdf::Int write(void const* data, pdf::ULong size) { 
         // write data
         cout << "Content-Length: " << size << "\r\n\r\n";
-        cout << *data;
+        cout << data;
         cout << "\r";
         return 0;
     }
