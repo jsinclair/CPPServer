@@ -30,19 +30,48 @@ using namespace std;
 using namespace cgicc;
 using namespace jag;
 
+class MyStream
+    : public pdf::StreamOut
+{
+    pdf::Int write(void const* data, pdf::ULong size) { 
+        // write data
+        cout << "Content-Length: " << size << "\r\n\r\n";
+        cout << *data;
+        cout << "\r";
+        return 0;
+    }
+
+    pdf::Int close() {
+        // finish
+        return 0;
+    }
+};
+
 int main(int argc, char **argv)
 {
-    pdf::Document doc(pdf::create_file("./public/hello.pdf"));
+    /*pdf::Document doc(pdf::create_file("./public/hello.pdf"));
     pdf::Image img = doc.image_load_file("/opt/homevaluation/nodejs/public/valuation/res/Pools/80000.jpg");
     doc.page_start(597.6, 848.68);
     doc.page().canvas().text(50, 800, "Hello, world!");
     doc.page().canvas().image(img, 20, 200);
     doc.page_end();
-    doc.finalize();
+    doc.finalize();*/
 //    return 0;
-
     
     Cgicc formData;
+    
+    cout << "Content-Type:application/pdf\n";
+    cout << "Content-Type:application/force-download\n";
+    //cout << "Content-Type:application/octet-stream\n";
+    cout << "Content-Description: File Transfer\n";
+    cout << "Content-Disposition: attachment; filename=\"Valuation.pdf\"\n";
+    
+    MyStream stream;
+    pdf::Document doc(pdf::create_stream(&stream));
+    doc.page_start(597.6, 848.68);
+    doc.page().canvas().text(50, 800, "Hello, world!");
+    doc.page_end();
+    doc.finalize();
     
 	/*printf("hello world\n");
     
@@ -107,7 +136,7 @@ int main(int argc, char **argv)
         cout << "</html>\n";
     }*/
     
-    if( !fi->isEmpty() && fi != (*formData).end()) {
+    /*if( !fi->isEmpty() && fi != (*formData).end()) {
         cout << "Content-type:text/html\r\n\r\n";
         cout << "<html>\n";
         cout << "<head>\n";
@@ -122,20 +151,20 @@ int main(int argc, char **argv)
             sql::Statement *stmt;
             sql::ResultSet *res;
 
-            /* Create a connection */
+            // Create a connection 
             driver = get_driver_instance();
             con = driver->connect("tcp://127.0.0.1:3306", "root", "root");
-            /* Connect to the MySQL test database */
+            // Connect to the MySQL test database
             con->setSchema("house_val_db");
             
             stmt = con->createStatement();
             res = stmt->executeQuery("select id, FirstNames, Surname from homeowner");
             cout << "\t... MySQL replies: <br/>";
             while (res->next()) {
-                /* Access column data by alias or column name */
+                // Access column data by alias or column name
                 cout << res->getString("id") << ": " << res->getString("FirstNames") << " " << res->getString("Surname") << "<br/>";
                 
-                /* Access column data by numeric offset, 1 is the first column */
+                // Access column data by numeric offset, 1 is the first column
                 //cout << res->getString(1) << endl;
             }
             delete res;
@@ -172,7 +201,7 @@ int main(int argc, char **argv)
         
         cout << "</body>\n";
         cout << "</html>\n";
-    }
+    }*/
     
 	return 0;
 }
